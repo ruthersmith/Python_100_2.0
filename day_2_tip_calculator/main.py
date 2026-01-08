@@ -33,10 +33,16 @@ class TipCalculator:
 
         try:
             user_input = float(user_input)
-            return user_input
         except ValueError as e:
             print(f"Error Occured, Invalid input, Expecting a number, received '{user_input}'")
             exit(code=-1)
+
+        # print(f"{user_input} < 1 == {user_input < 1}")
+        if user_input < 1:
+            print("The number is cannot less than 1")
+            exit(code=-1)
+
+        return user_input
 
 
 if __name__ == "__main__":
