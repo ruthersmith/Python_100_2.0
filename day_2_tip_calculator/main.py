@@ -37,9 +37,8 @@ class TipCalculator:
             print(f"Error Occured, Invalid input, Expecting a number, received '{user_input}'")
             exit(code=-1)
 
-        # print(f"{user_input} < 1 == {user_input < 1}")
         if user_input < 1:
-            print("The number is cannot less than 1")
+            print("Input cannot less than 1")
             exit(code=-1)
 
         return user_input
