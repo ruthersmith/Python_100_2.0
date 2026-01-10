@@ -24,10 +24,11 @@ class GameStep:
     """
     Represents a single decision point in the adventure game.
 
-    A GameStep prompts the player for input and determines whether the
-    selected choice is correct. If the player makes an incorrect choice,
-    an appropriate failure message is displayed and the step signals
-    that the game should end.
+    A GameStep encapsulates all logic required to run one step of the game.
+    When executed via `run`, it:
+    - Prompts the user for input
+    - Compares the input against the correct choice
+    - Displays an appropriate failure message for incorrect input
 
     Parameters
     ----------
@@ -64,10 +65,15 @@ class Game:
     """
         Controls the flow of the choose-your-own-adventure game.
 
-        The Game class introduces the player to the game and executes a
-        predefined sequence of GameStep instances. The player must
-        successfully complete every step to win.
-    
+        The Game class owns a predefined sequence of GameStep instances and
+        controls the overall game flow. Calling `run`:
+        - Introduces the game to the player
+        - Executes each GameStep in order
+        - Ends the game immediately if any step is failed
+        - Declares a win if all steps are completed successfully
+
+        The list of steps is defined as a class-level attribute.
+      
     """
 
     game_steps : list[GameStep] = [
@@ -104,6 +110,8 @@ class Game:
 
 
     def run(self):
+        """Runs the game from start to finish."""
+
         user_won = True
         print (self.art)
         print("Welcome to Treasure Island.\nYour mission is to find the treasure.")
