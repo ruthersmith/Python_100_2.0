@@ -1,5 +1,6 @@
 
 """
+Author: Ruthersmith Bercy
 Choose-Your-Own-Adventure Game Module.
 
 This module implements a simple text-based choose-your-own-adventure game.
@@ -15,6 +16,9 @@ Game
 GameStep
     Represents a single decision point in the game. Each step prompts the
     player for input and evaluates whether the chosen option is correct.
+
+How to run:
+        python main.py
 
 """
 

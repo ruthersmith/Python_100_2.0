@@ -1,3 +1,11 @@
+"""
+    Author: Ruthersmith Bercy
+    Description: Simple command line program to calculate splitting a bill with tip among multiple people.
+
+    How to run:
+        python main.py
+"""
+
 class TipCalculator:
 
     """
@@ -5,6 +13,9 @@ class TipCalculator:
 
         The class exposes a single public method, `run`, which computes how much
         each person should pay after adding a percentage-based tip to the total bill.
+
+        Usage:
+            TipCalculator().run()
     """
     
     def run(self) -> None:

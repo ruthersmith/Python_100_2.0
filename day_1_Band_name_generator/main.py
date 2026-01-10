@@ -1,3 +1,11 @@
+"""
+    Author: Ruthersmith Bercy
+    Description: Simple command line program to generate a band name by combining a user's city and pet name
+
+    How to run:
+        python main.py
+
+"""
 
 class BandNameGenerator:
 
@@ -5,6 +13,9 @@ class BandNameGenerator:
         This is a simple class to create a user's possible band name by 
         getting as input the name of the city the user grew up on and the name of their pet
         and combining them.
+
+        Usage:
+            BandNameGenerator().run()
     '''
 
     def run(self):

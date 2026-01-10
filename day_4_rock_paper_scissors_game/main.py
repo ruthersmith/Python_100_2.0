@@ -1,10 +1,16 @@
+"""
+    Author: Ruthersmith Bercy
+    Description:  A simple Rock-Paper-Scissors command-line game.
+
+    How to run:
+        python main.py
+"""
+
 import random
 
 class Game:
 
     """
-        A simple Rock-Paper-Scissors command-line game.
-
         This class encapsulates the full game loop for a single round of
         Rock-Paper-Scissors. The user is prompted to enter either "rock",
         "paper", or "scissors". The computer then randomly selects one of
