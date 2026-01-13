@@ -50,16 +50,16 @@ class Game:
     def run(self):
         
         while "".join(self.user_word) != self.word and self.guesses_left > 0:
-            found_word = False
+            found_letter = False
             print(f"This is the word to Guess: {"".join(self.user_word)}")
             user_guess = input("Guess a letter: ").lower()
 
             for index in range(len(self.word)):
                 if user_guess == self.word[index]:
                     self.user_word[index] = user_guess
-                    found_word = True
+                    found_letter = True
 
-            if not found_word:
+            if not found_letter:
                 self.guesses_left -= 1
                 print(f"Unfortunately your guess {user_guess} is not in this word, you have {self.guesses_left} remaining guesses")
 
