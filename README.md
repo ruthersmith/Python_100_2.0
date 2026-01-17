@@ -1,7 +1,7 @@
 # python_100_2.0
 
 A curated collection of 100 Python projects rebuilt with a more mature,
-clean, and maintainable approach.
+clean, and maintainable approach, progressing from simple exercises to more complex, real-world applications.”
 
 This repository is a second pass at the original `python_100` project,
 revisiting the same (or similar) exercises with a stronger focus on:
