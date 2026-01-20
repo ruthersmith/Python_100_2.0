@@ -3,11 +3,6 @@
 A curated collection of 100 Python projects rebuilt with a more mature,
 clean, and maintainable approach.
 
-Projects are intentionally ordered by increasing difficulty, progressing
-from beginner-friendly fundamentals to more complex, real-world applications.
-Each project directory includes a difficulty label (`beginner`, `intermediate`,
-or `advanced`) to reflect its relative complexity.
-
 This repository is a second pass at the original `python_100` project,
 revisiting the same (or similar) exercises with a stronger focus on:
 
@@ -19,6 +14,11 @@ revisiting the same (or similar) exercises with a stronger focus on:
 
 The goal is not just to “make it work,” but to write Python that reflects
 real-world standards and good engineering judgment.
+
+Projects are intentionally ordered by increasing difficulty, progressing
+from beginner-friendly fundamentals to more complex, real-world applications.
+Each project directory includes a difficulty label (`beginner`, `intermediate`,
+or `advanced`) to reflect its relative complexity.
 
 ## Project Structure
 
