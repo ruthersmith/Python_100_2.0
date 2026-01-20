@@ -3,6 +3,12 @@ import random
 
 
 class Food(Turtle):
+    """
+        Represents food that the snake can consume.
+
+        The food appears at random locations on the screen and is repositioned
+        each time it is eaten by the snake.
+    """
 
     def __init__(self):
         super().__init__()

@@ -4,6 +4,15 @@ from food import Food
 from scoreboard import ScoreBoard
 
 class SnakeGame:
+    """
+        Controls the main flow of the Snake game.
+
+        This class coordinates game initialization, user input,
+        the main game loop, and interactions between the Snake,
+        Food, and Scoreboard components.
+
+        The game is started by calling the `run()` method.
+    """
     SCREEN_WIDTH = 600
     SCREEN_HEIGHT = 600
 

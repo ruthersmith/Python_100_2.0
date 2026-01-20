@@ -3,8 +3,12 @@ from turtle import Turtle
 
 class Snake:
     """
-        responsible for the snake
+        Represents the snake in the Snake game.
+
+        The snake is composed of multiple turtle segments and is responsible
+        for handling movement, growth, and self-collision detection.
     """
+
     UP = 90
     DOWN = 270
     LEFT = 180
@@ -29,9 +33,7 @@ class Snake:
             self.move_forward()
             new_turtle_square.color("white")
 
-
         new_turtle_square.showturtle()
-
 
 
     def add_square_to_turtle(self):

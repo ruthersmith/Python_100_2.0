@@ -2,6 +2,12 @@ from turtle import Turtle
 
 
 class ScoreBoard(Turtle):
+    """
+        Displays score-related information on the screen.
+
+        Responsible for rendering the current score and displaying
+        end-of-game messages such as 'Game Over'.
+    """
 
     def __init__(self):
         super().__init__()

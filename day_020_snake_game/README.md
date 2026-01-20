@@ -1,25 +1,39 @@
-<strong>Project:</strong> Snake
+# Project: Snake
 
-Fully interactive program designed to replicate
-the once very popular snake arcade game
-read more at : https://en.wikipedia.org/wiki/Snake_(video_game_genre)
+Fully interactive program designed to replicate the classic Snake arcade game.
+Learn more about the game genre here:
+https://en.wikipedia.org/wiki/Snake_(video_game_genre)
 
-The goal of the game is for the user to use
-the arrow keys to move around the screen and eat
-the food that shows up in random location without
-hitting the wall or touching itself
+## Description
 
-This is written using OOP Concepts and made use of
-Classes, objects and inheritance
+The goal of the game is to control the snake using the arrow keys to move around the screen and eat food that appears at random locations. Each time the snake eats food, it grows longer and the score increases.
 
-The entry point of this project is the "main.py"
-file.
+The game ends if the snake:
 
-The files:
+- Collides with the wall
+- Collides with itself
 
-- snake.py: is responsible for defining the Snake Class.
-  The Snake is composed of a list of turtle objects
-- scoreboard.py defines the Scoreboard class which extends the Turtle class.
-  The Scoreboard class is responsible for any writing on the screen
-  such as the score board and "game over"
-- food.py, defines the Food class
+## Technical Overview
+
+This project is implemented using Object-Oriented Programming (OOP) principles, making use of:
+
+- Classes
+- Objects
+- Inheritance
+
+The entry point for the application is the `main.py` file. <br>
+How to run: `python main.py`
+
+## Project Structure
+
+- `main.py`: Entry point of the application. Initializes the game components and runs the main game loop.
+- `snake.py`: Defines the Snake class. The snake is composed of a list of Turtle objects representing each segment of the body.
+- `food.py`: Defines the Food class, responsible for creating and positioning food at random locations on the screen.
+- `scoreboard.py`: Defines the Scoreboard class, which extends the Turtle class. Responsible for displaying text on the screen, including the current score and the "Game Over" message.
+
+## Controls
+
+- Up Arrow – Move up
+- Down Arrow – Move down
+- Left Arrow – Move left
+- Right Arrow – Move right
