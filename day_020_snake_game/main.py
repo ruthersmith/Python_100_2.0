@@ -32,7 +32,7 @@ class SnakeGame:
         while self.game_is_on:
 
             snake.move_forward()
-            # self.screen.update()
+            # self.screen.update() this was always commented
 
             # compare the distance between a turtle and another turtle
             if snake.head.distance(food) < 15:
@@ -44,12 +44,15 @@ class SnakeGame:
             if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
                 self.game_is_on = False
                 scoreboard.game_over()
+                print("Collision with the wall detected")
+
 
             # detect collision with tail
             for turtle_segment in snake.turtles[1:]:
-                if turtle_segment.distance(snake.head) < 10:
+                if turtle_segment.distance(snake.head) < 1:
                     self.game_is_on = False
                     scoreboard.game_over()
+                    print("Collision with tail detected")
 
         self.screen.exitonclick()
 

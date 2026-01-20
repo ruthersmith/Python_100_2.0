@@ -12,7 +12,7 @@ hitting the wall or touching itself
 This is written using OOP Concepts and made use of
 Classes, objects and inheritance
 
-The entry point of this project is the "snake_game.py"
+The entry point of this project is the "main.py"
 file.
 
 The files:
