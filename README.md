@@ -1,7 +1,12 @@
 # python_100_2.0
 
 A curated collection of 100 Python projects rebuilt with a more mature,
-clean, and maintainable approach, progressing from simple exercises to more complex, real-world applications.
+clean, and maintainable approach.
+
+Projects are intentionally ordered by increasing difficulty, progressing
+from beginner-friendly fundamentals to more complex, real-world applications.
+Each project directory includes a difficulty label (`beginner`, `intermediate`,
+or `advanced`) to reflect its relative complexity.
 
 This repository is a second pass at the original `python_100` project,
 revisiting the same (or similar) exercises with a stronger focus on:
@@ -18,6 +23,7 @@ real-world standards and good engineering judgment.
 ## Project Structure
 
 Each project is self-contained and typically includes:
+
 - A main Python file that can be run from the command line
 - Clear module- and class-level docstrings
 - Well-defined public entry points (e.g., `run()`)
@@ -32,9 +38,11 @@ day_007_hangman/
 ## How to Run a Project
 
 Most projects can be run directly using:
+
 ```bash
 python main.py
 ```
+
 Refer to the module-level docstring in each project for specific instructions.
 
 ## Why 2.0?
@@ -44,8 +52,3 @@ journey. This version represents a more intentional rewrite of those ideas
 using better structure, clearer design, and more idiomatic Python.
 
 Both repositories document different stages of growth.
-
-
-
-
-
