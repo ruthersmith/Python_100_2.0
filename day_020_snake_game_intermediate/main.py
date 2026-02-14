@@ -2,6 +2,8 @@ from turtle import Screen
 from snake import Snake
 from food import Food
 from scoreboard import ScoreBoard
+import time
+
 
 class SnakeGame:
     """
@@ -37,11 +39,13 @@ class SnakeGame:
         self.screen.onkey(snake.down, SnakeGame.DOWN_KEY)
         self.screen.onkey(snake.left, SnakeGame.LEFT_KEY)
         self.screen.onkey(snake.right, SnakeGame.RIGHT_KEY)
+        self.screen.tracer(0)
 
         while self.game_is_on:
 
             snake.move_forward()
-            # self.screen.update() this was always commented
+            self.screen.update()
+            time.sleep(0.1)
 
             # compare the distance between a turtle and another turtle
             if snake.head.distance(food) < 15:
