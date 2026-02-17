@@ -37,3 +37,9 @@ How to run: `python main.py`
 - Down Arrow – Move down
 - Left Arrow – Move left
 - Right Arrow – Move right
+
+## Known Issues
+
+- Closing the game window may sometimes raise a Turtle `Terminator` error in the console.
+  This happens because the game loop continues running after the window is closed.
+  The game still functions correctly.
