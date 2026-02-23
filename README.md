@@ -52,3 +52,17 @@ journey. This version represents a more intentional rewrite of those ideas
 using better structure, clearer design, and more idiomatic Python.
 
 Both repositories document different stages of growth.
+
+## Virtual Environment Setup
+
+This repository uses a single shared virtual environment for all projects.
+
+### Create the environment (first time only)
+
+```bash
+python -m venv venv
+```
+
+To activate the env on Git Bash / macOS / Linux <br>
+run: `source venv/Scripts/activate` or <br>
+use the included convenience script `source activate.sh`
