@@ -1,9 +1,36 @@
+"""
+    Author: Ruthersmith Bercy
+
+    Password Manager (GUI Version)
+    
+    An improved version of the Day 5 console-based random password generator,
+    expanded into a full-featured password manager with a graphical user interface.
+
+    This application allows users to:
+
+    - Generate secure random passwords
+    - Save login credentials (e.g., website, email/username, password)
+    - Search for stored credentials
+    - Manage saved password data
+
+    ## Requirements (See the root README for environment setup instructions.)
+    - pyperclip
+
+    How to run:
+        python password_manager.py
+
+"""
+import os
+import sys
 import tkinter as tk
 from tkinter import messagebox
-import password_generator
-import pyperclip
 import json
+import random
+import pyperclip
 
+# add the path to the password generator folder
+sys.path.append(os.path.abspath("../day_005_random_password_generator_beginner"))
+from password_generator import PasswordGenerator
 
 class PasswordManager:
 
@@ -98,8 +125,13 @@ class PasswordManager:
                 self.website_entry.delete(0, tk.END)
 
     def handle_password_generation(self):
+
+        nr_letters = random.randint(8, 14)
+        nr_symbols = random.randint(2, 8)
+        nr_numbers = random.randint(2, 8)
+
         self.password_entry.delete(0, tk.END)
-        new_password = password_generator.password_generator()
+        new_password = PasswordGenerator.generate_password(nr_letters, nr_symbols, nr_numbers)
         self.password_entry.insert(0, new_password)
         pyperclip.copy(new_password)
 
