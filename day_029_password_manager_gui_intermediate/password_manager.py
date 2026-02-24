@@ -9,9 +9,13 @@
     This application allows users to:
 
     - Generate secure random passwords
+    - Automatically copy generated passwords to the clipboard using `pyperclip`
     - Save login credentials (e.g., website, email/username, password)
     - Search for stored credentials
     - Manage saved password data
+
+    Credentials are stored in a default `credentials.json` file (unencrypted;
+    encryption is out of scope for this project).
 
     ## Requirements (See the root README for environment setup instructions.)
     - pyperclip
@@ -33,6 +37,17 @@ sys.path.append(os.path.abspath("../day_005_random_password_generator_beginner")
 from password_generator import PasswordGenerator
 
 class PasswordManager:
+
+    """
+        Main controller for the Password Manager GUI application.
+
+        Responsibilities:
+        - Manage user interaction through the GUI
+        - Handle password generation via the `password_generator` module
+        - Save and retrieve credentials from a JSON file
+        - Manage basic input validation
+
+    """
 
     def __init__(self):
         self.window = tk.Tk()
@@ -71,7 +86,18 @@ class PasswordManager:
         add_btn = tk.Button(text='Add', width=36, command=self.save_to_file)
         add_btn.grid(row=4, column=1, columnspan=2, sticky="EW")
 
+
     def search(self, filename='credentials.json'):
+        """
+            Search for an existing entry for a particular website.
+
+            Reads from the default JSON file (`credentials.json`) and displays
+            the credentials if found. Triggered when the user clicks the "Search" button.
+
+            Parameters:
+            - filename (str): Path to the credentials file. Defaults to 'credentials.json'.
+        """
+
         website_query = self.website_entry.get()
         try:
             with open(filename,'r') as file:
@@ -84,7 +110,10 @@ class PasswordManager:
         except KeyError as error:
             messagebox.showerror(title="Error", message=f"No Entry for website {error} exist")
 
+
     def save_to_file(self, filename='credentials.json'):
+        """Saves user-provided credentials to the JSON file after basic validation."""
+
         password = self.password_entry.get()
         username_email = self.user_entry.get()
         website = self.website_entry.get()
@@ -125,6 +154,13 @@ class PasswordManager:
                 self.website_entry.delete(0, tk.END)
 
     def handle_password_generation(self):
+        """
+            Generates a secure random password using the `password_generator` module
+            when the user clicks the "Generate Password" button.
+
+            The generated password is automatically inserted into the password field
+            of the GUI and also saved to the clipboard
+        """
 
         nr_letters = random.randint(8, 14)
         nr_symbols = random.randint(2, 8)
