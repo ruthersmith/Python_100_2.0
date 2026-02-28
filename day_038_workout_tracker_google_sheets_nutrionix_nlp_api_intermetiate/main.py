@@ -1,59 +1,111 @@
 """
-    Workout tracker, 
-    uses nutritionix nlp to get the excercise stats
-    then uses the sheety api to post the endpoint to google sheets
-    A nutritionix app id and api key, as well as a sheety endpoint is needed for it to run
-    the program looks for it in a secret.txt file in the same working directory, otherwise it will crash,
-    you can also modify the script directly
+    Author: Ruthersmith Bercy
+    Workout Tracker
+
+    A command-line application that parses natural-language exercise input,
+    retrieves structured workout statistics from a mock NLP API, and logs
+    the results to a Google Sheets spreadsheet using the Sheety API.
+
+    Originally built using the Nutritionix NLP API, this version replaces
+    Nutritionix with a mock API that provides similar exercise parsing
+    functionality due to changes in Nutritionix's free tier availability.
+
+    Workflow:
+    1. User provides a natural language description of exercise
+    (e.g., "Swam for an hour").
+    2. The program sends the input to a mock NLP API to extract:
+    - Exercise type
+    - Duration
+    - Other relevant statistics
+    3. The parsed data is then posted to a Google Sheets document
+    via the Sheety API.
+
+    Environment Variables:
+    This program requires a `.env` file containing necessary API keys,
+    authentication credentials, and endpoint URLs.
+
+    It is recommended to include a `.env.dist` file as a template
+    for required environment variables.
+
+    The application is implemented as a single-file program
+    containing the `WorkoutTracker` class.
+
+     How to run:
+        python main.py
+
 """
 
+
+from dotenv import load_dotenv
+import os
 import requests
 import datetime
 
-secret_file = open("secret.txt", "r")
+load_dotenv()
 
-NUTRITIONIX_APP_ID = secret_file.readline().strip()
-NUTRITIONIX_API_KEY = secret_file.readline().strip()
-SHEETS_ENDPOINT = secret_file.readline().strip()
-NUTRITIONIX_ENDPOINT = "https://trackapi.nutritionix.com/v2/natural/exercise"
+class WorkoutTracker:
+    """Core controller for the Workout Tracker application."""
+    
+    def __init__(self):
+        
+        self.nutritionix_app_id = os.getenv("NUTRITIONIX_APP_ID")
+        self.nutritionix_app_key = os.getenv("NUTRITIONIX_API_KEY")
+        self.nutritionix_base_endpoint = os.getenv("NUTRITIONIX_ENDPOINT")
+        self.sheets_endpoint = os.getenv("SHEETS_ENDPOINT")
+        self.sheets_bearer_token = os.getenv("SHEETS_BEARER_TOKEN")
 
-secret_file.close()
+    def get_exercise_stat(self, raw_string):
+        """
+            Sends a natural-language exercise description to the mock NLP API
+            and retrieves structured workout statistics.
 
+            Parameters:
+            - raw_string (str): Natural-language input describing the workout
+            (e.g., "Ran 3 miles", "Swam for 45 minutes").
+        """
+        url = f"{self.nutritionix_base_endpoint}/v1/nutrition/natural/exercise"
 
-def get_exercise_stat(raw_string):
-    headers = {
-        "x-app-id": NUTRITIONIX_APP_ID,
-        "x-app-key": NUTRITIONIX_API_KEY,
-        "x-remote-user-id": "0"
-    }
-    body = {"query": raw_string, }
-    response = requests.post(url=NUTRITIONIX_ENDPOINT, headers=headers, data=body)
-
-    return response.json()
-
-
-def post_response(response):
-    date_time = datetime.datetime.now()
-    for exercise in response["exercises"]:
-        body = {
-            "workout": {
-                "date": str(date_time.date()),
-                "time": str(date_time.time()),
-                "exercise": exercise['user_input'],
-                "duration": exercise['duration_min'],
-                "calories": exercise['nf_calories']
-            }
+        headers = {
+            "x-app-id": self.nutritionix_app_id,
+            "x-app-key": self.nutritionix_app_key,
+            "Content-Type": "application/json"
         }
-        response = requests.post(url=SHEETS_ENDPOINT, json=body)
-        print(response.text)
+
+        data = {"query": raw_string, }
+        response = requests.post(url=url, headers=headers, json=data)
+
+        return response.json()
+
+    
+    def post_excercise_stats_to_sheets(self, excercise_stats):
+        """
+            Posts structured exercise statistics to a Google Sheets document
+            using the Sheety API.
+        """
+        
+        headers = {"Authorization" : f"Bearer {self.sheets_bearer_token}"}
+        date_time = datetime.datetime.now()
+        
+        for exercise in excercise_stats["exercises"]:
+            body = {
+                "workout": {
+                    "date": str(date_time.date()),
+                    "time": str(date_time.time()),
+                    "exercise": exercise['user_input'],
+                    "duration": exercise['duration_min'],
+                    "calories": exercise['nf_calories']
+                }
+            }
+            response = requests.post(url=self.sheets_endpoint, json=body, headers=headers)
+            print(response.text)
 
 
-def run():
-    workout_done = input("Tell me what exercise have you done: ")
-    workout_done = workout_done if workout_done != "" else "I played soccer for 1 hour and dance for 20 minutes"
-    processed_response = get_exercise_stat(workout_done)
-    post_response(processed_response)
+    def run(self):
+        workout_done = input("Tell me what exercise have you done: ")
+        processed_response = self.get_exercise_stat(workout_done)
+        self.post_excercise_stats_to_sheets(processed_response)
 
 
 if __name__ == '__main__':
-    run()
+    tracker = WorkoutTracker()
+    tracker.run()
