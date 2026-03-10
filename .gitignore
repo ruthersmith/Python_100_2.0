@@ -2,4 +2,4 @@ __pycache__
 # VS Code settings
 .vscode/
 .env
-browser_auth.json
+browser.json
