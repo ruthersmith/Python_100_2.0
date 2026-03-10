@@ -139,17 +139,17 @@ class SpotifyTimeMachine:
 
         Parameters:
             playlist_id (str): The playlist to add the song to.
-            video_id (list): The video ID of the song.
+            video_id (list): List containing The video ID of the song to add to the playlist
         """
 
         self.ytmusic.add_playlist_items(playlist_id, videoIds=video_ids)
 
 
-    def run(self, date):
+    def run(self, date : str):
         """
-            Entry point for the functionality of the SpotifyTimeMachine class
+        Entry point for the functionality of the SpotifyTimeMachine class
         :param date: The date in the format (YYYYMMDD)
-        :return:
+    
             """
         print("Getting Playlist Ready...")
         playlist_id = self.create_playlist(date)
