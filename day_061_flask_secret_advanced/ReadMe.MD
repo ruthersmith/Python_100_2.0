@@ -1,6 +1,6 @@
 # Fake Flask Project – WTForms Playground
 
-This is a **toy Flask project** meant for playing around with **WTForms**, routing, and templates.  
+This is a **toy Flask project** for playing with **WTForms**, **Bootstrap**, and **template inheritance**.  
 It’s intentionally simple, just to experiment with forms, validation, and basic navigation.
 
 ---
