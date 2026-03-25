@@ -1,11 +1,11 @@
-<!DOCTYPE HTML>
 
-<html>
-	<head>
-		<title>Login</title>
-	</head>
-	<body>
-        <div class="container">
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="container">
 		<h1>Login</h1>
 			<form method="POST" action="{{ url_for('login') }}">
 				{{ form.csrf_token }}
@@ -17,6 +17,6 @@
 				</p>
 				{{form.submit}}
 			</form>
-        </div>
-	</body>
-</html>
+</div>
+
+{% endblock %}
