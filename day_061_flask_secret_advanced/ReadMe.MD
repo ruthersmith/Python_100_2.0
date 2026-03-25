@@ -24,6 +24,7 @@ It’s intentionally simple, just to experiment with forms, validation, and basi
 - flask
 - flask-wtf
 - email_validator
+- bootstrap-flask
 
 ## Notes / Fun
 

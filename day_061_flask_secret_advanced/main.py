@@ -1,9 +1,13 @@
 from flask import Flask, render_template
 from login_form import LoginForm
+from flask_bootstrap import Bootstrap5
+
 
 
 app = Flask(__name__)
 app.secret_key = "any-secret" # This is required to use CSRF with WTForms
+bootstrap = Bootstrap5(app)
+
 
 
 @app.route("/")
