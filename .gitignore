@@ -4,3 +4,4 @@ __pycache__
 .env
 browser.json
 *.db
+!cafe.db   # except cafe.db, used in day_066
