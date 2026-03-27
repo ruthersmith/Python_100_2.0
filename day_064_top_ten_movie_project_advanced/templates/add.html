@@ -1,4 +1,4 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'base.html' %}
 
 {% block styles %}
   {{ super() }}
@@ -10,7 +10,20 @@
 {% block title %}Add Movie{% endblock %}
 
 {% block content %}
+
 <div class="content">
     <h1 class="heading">Add a Movie</h1>
+
+    <form action="POST">
+        {{ form.csrf_token }}
+        <p>{{ form.title.label }} <br> {{ form.title() }}</p>
+        <p>{{ form.year.label }} <br> {{ form.year(class="form-input") }}</p>
+        <p>{{ form.description.label }} <br> {{ form.description(class="form-input") }}</p>
+        <p>{{ form.rating.label }} <br> {{ form.rating(class="form-input") }}</p>
+        <p>{{ form.ranking.label }} <br> {{ form.ranking(class="form-input") }}</p>
+        <p>{{ form.review.label }} <br> {{ form.review(class="form-input") }}</p>
+        <p>{{ form.img_url.label }} <br> {{ form.img_url(class="form-input") }}</p>
+        {{ form.submit(class="button") }}
+    </form>
 </div>
 {% endblock %}
