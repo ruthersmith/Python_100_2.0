@@ -30,5 +30,22 @@ def add():
     return render_template("add.html", form=MovieForm())
 
 
+@app.route("/edit/<int:movie_id>", methods=["GET", "POST"])
+def edit(movie_id):
+    movie = Movie.query.get(movie_id)
+    edit_form = MovieForm(obj=movie)
+    if request.method == "POST":
+        movie.title = request.form["title"]
+        movie.year = request.form["year"]
+        movie.description = request.form["description"]
+        movie.rating = request.form["rating"]
+        movie.ranking = request.form["ranking"]
+        movie.review = request.form["review"]
+        movie.img_url = request.form["img_url"]
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("edit.html", form=edit_form, movie=movie)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
