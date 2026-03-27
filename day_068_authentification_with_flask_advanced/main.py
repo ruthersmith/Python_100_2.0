@@ -14,6 +14,7 @@ def home():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+
         if getUserByEmail(request.form.get('email')):
             flash("User already exist")
             return redirect(url_for("login"))
@@ -24,9 +25,11 @@ def register():
             name=request.form.get('name'),
             password=password
         )
+
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
+        
         return redirect(url_for("secrets", name=new_user.name))
     else:
         return render_template("register.html")
@@ -67,7 +70,7 @@ def logout():
 @app.route('/download')
 @login_required
 def download():
-    return send_from_directory('static', filename="files/cheat_sheet.pdf")
+    return send_from_directory('static', path="files/cheat_sheet.pdf")
 
 
 if __name__ == "__main__":
