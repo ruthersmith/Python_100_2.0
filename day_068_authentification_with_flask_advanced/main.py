@@ -1,32 +1,10 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory
+from flask import render_template, request, url_for, redirect, flash, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from flask_login import  login_user, login_required, current_user, logout_user
+from config import create_app, db
+from models import  User, getUserByEmail
 
-app = Flask(__name__)
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-app.config['SECRET_KEY'] = 'any-secret-key-you-choose'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-@login_manager.user_loader
-def load_user(user_id):
-    print(user_id)
-    return User.query.get(int(user_id))
-
-##CREATE TABLE IN DB
-class User(UserMixin,db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
-#Line below only required once, when creating DB. 
-# db.create_all()
-
+app = create_app()
 
 @app.route('/')
 def home():
@@ -48,14 +26,10 @@ def register():
         )
         db.session.add(new_user)
         db.session.commit()
-        print(request.form)
+        login_user(new_user)
         return redirect(url_for("secrets", name=new_user.name))
     else:
         return render_template("register.html")
-
-
-def getUserByEmail(email):
-    return User.query.filter_by(email=email).first()
 
 
 @app.route('/login', methods=["GET", "POST"])
