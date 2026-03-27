@@ -5,7 +5,6 @@ from forms import MovieForm
 
 app = create_app()
 
-
 @app.route("/")
 def home():
     movie_list = db.session.query(Movie).all()
