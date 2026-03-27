@@ -14,7 +14,7 @@
 <div class="content">
     <h1 class="heading">Add a Movie</h1>
 
-    <form action="POST">
+    <form action="{{ url_for('add') }}", method="POST">
         {{ form.csrf_token }}
         <p>{{ form.title.label }} <br> {{ form.title() }}</p>
         <p>{{ form.year.label }} <br> {{ form.year(class="form-input") }}</p>

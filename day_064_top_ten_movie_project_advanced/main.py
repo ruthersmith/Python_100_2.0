@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request
 from config import create_app, db
 from models import Movie
 from forms import MovieForm
