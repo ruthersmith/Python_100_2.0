@@ -47,5 +47,13 @@ def edit(movie_id):
     return render_template("edit.html", form=edit_form, movie=movie)
 
 
+@app.route("/delete/<int:movie_id>")
+def delete(movie_id):    
+    movie_to_delete = Movie.query.get(movie_id)
+    db.session.delete(movie_to_delete)
+    db.session.commit()
+    return redirect(url_for("home"))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
